@@ -23,4 +23,5 @@ class BuffSpider(scrapy.Spider):
             item['price'] = price[0].strip()
 
             items.append(item)
+            
         return items
