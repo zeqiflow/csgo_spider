@@ -5,23 +5,23 @@ import scrapy
 from items import Item
 from icecream import ic
 
-class BuffSpider(scrapy.Spider):
-    name = "buff"
+class ColaSpider(scrapy.Spider):
+    name = "cola"
     allowed_domains = ["4cola.com"]
     start_urls = ["https://www.4cola.com/skins"]
 
     def parse(self, response):
         items = []
     
-        for each in response.xpath("//div[@id=\"v-data-table__wrapper\"]"):
+        for each in response.xpath("//tr[@class=\"pointer\"]"):
             item = Item()
 
-            name = each.xpath("./table/tbody/tr/td[2]/a/text()").extract()
-            price = each.xpath("./table/tbody/tr/td[3]/text()").extract()
+            name = each.xpath("./td[@class=\"text-no-wrap\"]/a/text()").extract()
+            price = each.xpath("./td[@class=\"text-no-wrap\"][3]/text()").extract()
 
             item['name'] = name[0].strip()
             item['price'] = price[0].strip()
 
             items.append(item)
-            
+
         return items

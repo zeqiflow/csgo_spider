@@ -2,7 +2,7 @@ import sys
 sys.path.append('/Users/apple/Desktop/developer/csgo_spider/csgo_spider')
 
 import scrapy
-from items import CsgoItem
+from items import Item
 from icecream import ic
 
 class BuffSpider(scrapy.Spider):
